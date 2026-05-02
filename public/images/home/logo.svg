@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Light Pine Wood Gradient -->
+    <linearGradient id="pineGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C99B58" />
+      <stop offset="50%" stop-color="#DEB881" />
+      <stop offset="100%" stop-color="#E8C999" />
+    </linearGradient>
+    
+    <!-- Medium Wood Gradient -->
+    <linearGradient id="walnutGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8F6027" />
+      <stop offset="50%" stop-color="#A57537" />
+      <stop offset="100%" stop-color="#BA8A47" />
+    </linearGradient>
+    
+    <!-- Drop shadow that will respect the plank gaps -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3" />
+    </filter>
+
+    <!-- Mask to cut the solid shapes into 3 wooden planks -->
+    <mask id="plankMask">
+      <rect width="200" height="200" fill="white" />
+      
+      <!-- Green (Pine) Gaps -->
+      <path d="M 133 200 L 33 100 L 100 33 L 200 133" fill="none" stroke="black" stroke-width="2.5" stroke-linejoin="miter" />
+      <path d="M 147 200 L 47 100 L 100 47 L 200 147" fill="none" stroke="black" stroke-width="2.5" stroke-linejoin="miter" />
+      
+      <!-- Blue (Walnut) Gaps -->
+      <path d="M 67 0 L 167 100 L 100 167 L 0 67" fill="none" stroke="black" stroke-width="2.5" stroke-linejoin="miter" />
+      <path d="M 53 0 L 153 100 L 100 153 L 0 53" fill="none" stroke="black" stroke-width="2.5" stroke-linejoin="miter" />
+      
+      <!-- Miter seams at corners -->
+      <line x1="100" y1="20" x2="100" y2="60" stroke="black" stroke-width="3" />
+      <line x1="100" y1="140" x2="100" y2="180" stroke="black" stroke-width="3" />
+      <line x1="20" y1="100" x2="60" y2="100" stroke="black" stroke-width="3" />
+      <line x1="140" y1="100" x2="180" y2="100" stroke="black" stroke-width="3" />
+
+      <!-- Overlap seams to make overlapping planks pop -->
+      <line x1="160" y1="80" x2="140" y2="100" stroke="black" stroke-width="3" />
+      <line x1="40" y1="120" x2="60" y2="100" stroke="black" stroke-width="3" />
+    </mask>
+
+    <!-- Pallet Nails -->
+    <g id="nails" fill="#3E2723" opacity="0.6">
+      <!-- Top Right Overlap Nails -->
+      <circle cx="155" cy="81" r="1.5"/>
+      <circle cx="148" cy="88" r="1.5"/>
+      <circle cx="141" cy="95" r="1.5"/>
+      
+      <!-- Bottom Left Overlap Nails -->
+      <circle cx="45" cy="119" r="1.5"/>
+      <circle cx="52" cy="112" r="1.5"/>
+      <circle cx="59" cy="105" r="1.5"/>
+
+      <!-- Top Miter Nails -->
+      <circle cx="95" cy="26" r="1.5"/> <circle cx="105" cy="26" r="1.5"/>
+      <circle cx="95" cy="40" r="1.5"/> <circle cx="105" cy="40" r="1.5"/>
+      <circle cx="95" cy="54" r="1.5"/> <circle cx="105" cy="54" r="1.5"/>
+
+      <!-- Bottom Miter Nails -->
+      <circle cx="95" cy="146" r="1.5"/> <circle cx="105" cy="146" r="1.5"/>
+      <circle cx="95" cy="160" r="1.5"/> <circle cx="105" cy="160" r="1.5"/>
+      <circle cx="95" cy="174" r="1.5"/> <circle cx="105" cy="174" r="1.5"/>
+
+      <!-- Left Miter Nails -->
+      <circle cx="26" cy="95" r="1.5"/> <circle cx="26" cy="105" r="1.5"/>
+      <circle cx="40" cy="95" r="1.5"/> <circle cx="40" cy="105" r="1.5"/>
+      <circle cx="54" cy="95" r="1.5"/> <circle cx="54" cy="105" r="1.5"/>
+
+      <!-- Right Miter Nails -->
+      <circle cx="146" cy="95" r="1.5"/> <circle cx="146" cy="105" r="1.5"/>
+      <circle cx="160" cy="95" r="1.5"/> <circle cx="160" cy="105" r="1.5"/>
+      <circle cx="174" cy="95" r="1.5"/> <circle cx="174" cy="105" r="1.5"/>
+    </g>
+  </defs>
+
+  <g filter="url(#shadow)" mask="url(#plankMask)">
+    <!-- Light Pine Shape (Full) -->
+    <path d="M 60 140 L 30 110 Q 20 100, 30 90 L 90 30 Q 100 20, 110 30 L 160 80 L 140 100 L 100 60 L 60 100 L 80 120 Z" fill="url(#pineGrad)" />
+    
+    <!-- Medium Wood Shape (Full) - Drawn after to overlap at bottom-left -->
+    <path d="M 140 60 L 170 90 Q 180 100, 170 110 L 110 170 Q 100 180, 90 170 L 40 120 L 60 100 L 100 140 L 140 100 L 120 80 Z" fill="url(#walnutGrad)" />
+    
+    <!-- Light Pine Overlap (Top-Right) - Drawn last to overlap at top-right -->
+    <path d="M 140 60 L 160 80 L 140 100 L 120 80 Z" fill="url(#pineGrad)" />
+    
+    <!-- Draw Nails over the planks -->
+    <use href="#nails" />
+  </g>
+</svg>

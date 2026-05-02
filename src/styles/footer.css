@@ -1,0 +1,233 @@
+/* ===================================
+   Footer Styles
+   =================================== */
+.footer {
+  background: var(--clr-deep-mahogany);
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: var(--space-4xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--clr-gold-gradient);
+}
+
+.footer-top {
+  padding-bottom: var(--space-3xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-logo-section {
+  margin-bottom: var(--space-xl);
+}
+
+.footer-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: var(--space-lg);
+}
+
+.footer-logo {
+  width: 55px;
+  height: 55px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--clr-amber-gold);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.1;
+}
+
+.footer-brand-tag {
+  font-size: 0.7rem;
+  color: var(--clr-amber-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer-description {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+  max-width: 360px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: var(--space-lg);
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: var(--transition-base);
+  font-size: 16px;
+}
+
+.footer-social a:hover {
+  background: var(--clr-amber-gold);
+  border-color: var(--clr-amber-gold);
+  color: var(--clr-deep-mahogany);
+  transform: translateY(-3px);
+}
+
+.footer-heading {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: var(--space-xl);
+  position: relative;
+  padding-bottom: var(--space-sm);
+}
+
+.footer-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--clr-amber-gold);
+  border-radius: 1px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--fs-small);
+  transition: var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links a::before {
+  content: '›';
+  color: var(--clr-amber-gold);
+  font-weight: bold;
+  transition: var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--clr-light-gold);
+  transform: translateX(4px);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-contact-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(201, 147, 58, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-amber-gold);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.footer-contact-text {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+.footer-contact-text a {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-contact-text a:hover {
+  color: var(--clr-light-gold);
+}
+
+.footer-bottom {
+  padding: var(--space-lg) 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+.footer-bottom a {
+  color: var(--clr-amber-gold);
+  font-weight: 500;
+}
+
+.footer-bottom a:hover {
+  color: var(--clr-light-gold);
+}
+
+/* Certificates badges */
+.footer-badges {
+  display: flex;
+  gap: 12px;
+  margin-top: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.footer-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+}
+
