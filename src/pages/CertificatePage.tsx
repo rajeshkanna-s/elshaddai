@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaTimes, FaChevronLeft, FaChevronRight, FaShieldAlt, FaGlobeAsia, FaCheckCircle, FaSearchPlus } from 'react-icons/fa';
+import { FaShieldAlt, FaGlobeAsia, FaCheckCircle, FaSearchPlus } from 'react-icons/fa';
 import { useScrollReveal } from '../hooks/useAnimations';
 import '../styles/pages.css';
 
@@ -13,23 +13,11 @@ const certificates = [
 ];
 
 export default function CertificatePage() {
-  const [lightbox, setLightbox] = useState<number | null>(null);
   const revealRef = useScrollReveal();
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (lightbox === null) return;
-      if (e.key === 'Escape') setLightbox(null);
-      if (e.key === 'ArrowLeft') setLightbox(p => p !== null ? (p - 1 + certificates.length) % certificates.length : null);
-      if (e.key === 'ArrowRight') setLightbox(p => p !== null ? (p + 1) % certificates.length : null);
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  });
-
   const handleCertClick = (index: number) => {
-    setLightbox(index);
+    window.open(certificates[index].file, '_blank');
   };
 
   return (
@@ -95,16 +83,6 @@ export default function CertificatePage() {
         </div>
       </section>
 
-      {/* Lightbox — Shows certificate image */}
-      {lightbox !== null && (
-        <div className="lightbox-overlay" onClick={() => setLightbox(null)}>
-          <button className="lightbox-close" onClick={() => setLightbox(null)}><FaTimes /></button>
-          <button className="lightbox-nav prev" onClick={e => { e.stopPropagation(); setLightbox(p => p !== null ? (p - 1 + certificates.length) % certificates.length : null); }}><FaChevronLeft /></button>
-          <img src={certificates[lightbox].thumb} alt={certificates[lightbox].name} className="lightbox-content" onClick={e => e.stopPropagation()} />
-          <button className="lightbox-nav next" onClick={e => { e.stopPropagation(); setLightbox(p => p !== null ? (p + 1) % certificates.length : null); }}><FaChevronRight /></button>
-          <div className="lightbox-caption">{certificates[lightbox].name}</div>
-        </div>
-      )}
     </div>
   );
 }
