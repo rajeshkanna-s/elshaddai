@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaTimes, FaChevronLeft, FaChevronRight, FaShieldAlt, FaGlobeAsia, FaCheckCircle } from 'react-icons/fa';
+import { FaTimes, FaChevronLeft, FaChevronRight, FaShieldAlt, FaGlobeAsia, FaCheckCircle, FaCertificate, FaFileAlt, FaExternalLinkAlt } from 'react-icons/fa';
 import { useScrollReveal } from '../hooks/useAnimations';
 import '../styles/pages.css';
 
 const certificates = [
-  { name: 'Udyam MSME Registration', desc: 'Ministry of MSME registration certifying El Shaddai as a recognized Micro, Small & Medium Enterprise.', file: '/assets/certificates/udyam-msmd-registration-certificate.pdf' },
-  { name: 'ISO Certification', desc: 'ISO quality management certification validating our adherence to international quality standards in manufacturing.', file: '/assets/certificates/iso-certification.pdf' },
-  { name: 'GST Certificate (Plant II)', desc: 'Goods & Services Tax registration certifying El Shaddai as a legitimate business entity under Indian tax law.', file: '/assets/certificates/gst-new-certificate-for-plant-II.pdf' },
-  { name: 'GST Form', desc: 'Official GST registration form filed with the Government of India for El Shaddai Wood Packing.', file: '/assets/certificates/gst-form-for-elshaddai-wood-packing.pdf' },
-  { name: 'PAN Card', desc: 'Permanent Account Number registration with the Income Tax Department, Government of India.', file: '/assets/certificates/pancard.pdf' },
+  { name: 'Udyam MSME Registration', desc: 'Ministry of MSME registration certifying El Shaddai as a recognized Micro, Small & Medium Enterprise.', file: '/assets/certificates/udyam-msmd-registration-certificate.pdf', icon: '🏛️' },
+  { name: 'ISO Certification', desc: 'ISO quality management certification validating our adherence to international quality standards in manufacturing.', file: '/assets/certificates/iso-certification.pdf', icon: '🏅' },
+  { name: 'GST Certificate (Plant II)', desc: 'Goods & Services Tax registration certifying El Shaddai as a legitimate business entity under Indian tax law.', file: '/assets/certificates/gst-new-certificate-for-plant-II.pdf', icon: '📋' },
+  { name: 'GST Form', desc: 'Official GST registration form filed with the Government of India for El Shaddai Wood Packing.', file: '/assets/certificates/gst-form-for-elshaddai-wood-packing.pdf', icon: '📄' },
+  { name: 'PAN Card', desc: 'Permanent Account Number registration with the Income Tax Department, Government of India.', file: '/assets/certificates/pancard.pdf', icon: '🪪' },
 ];
 
 export default function CertificatePage() {
@@ -27,6 +27,16 @@ export default function CertificatePage() {
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   });
+
+  const handleCertClick = (index: number) => {
+    // On mobile, open PDF directly in new tab since iframe won't render
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      window.open(certificates[index].file, '_blank');
+    } else {
+      setLightbox(index);
+    }
+  };
 
   return (
     <div ref={revealRef}>
@@ -49,9 +59,17 @@ export default function CertificatePage() {
           <div className="cert-grid">
             {certificates.map((cert, i) => (
               <div key={i} className={`cert-card reveal reveal-delay-${(i % 4) + 1}`}>
-                <div className="cert-card-img" onClick={() => setLightbox(i)} style={{ position: 'relative', height: '280px', overflow: 'hidden', cursor: 'pointer', background: '#fff' }}>
-                  <iframe src={`${cert.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`} style={{ width: '100%', height: '350px', pointerEvents: 'none', border: 'none', marginTop: '-40px' }} scrolling="no" title={cert.name} />
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, background: 'transparent' }}></div>
+                <div className="cert-card-thumb" onClick={() => handleCertClick(i)}>
+                  <div className="cert-card-thumb-bg">
+                    <div className="cert-card-icon">{cert.icon}</div>
+                    <FaCertificate className="cert-card-watermark" />
+                  </div>
+                  <div className="cert-card-thumb-label">
+                    <FaFileAlt /> <span>PDF Document</span>
+                  </div>
+                  <div className="cert-card-thumb-action">
+                    <FaExternalLinkAlt /> View Certificate
+                  </div>
                 </div>
                 <div className="cert-card-body">
                   <h3>{cert.name}</h3>
@@ -88,16 +106,12 @@ export default function CertificatePage() {
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* Lightbox — Desktop only, opens PDF in iframe */}
       {lightbox !== null && (
         <div className="lightbox-overlay" onClick={() => setLightbox(null)}>
           <button className="lightbox-close" onClick={() => setLightbox(null)}><FaTimes /></button>
           <button className="lightbox-nav prev" onClick={e => { e.stopPropagation(); setLightbox(p => p !== null ? (p - 1 + certificates.length) % certificates.length : null); }}><FaChevronLeft /></button>
-          {certificates[lightbox].file.endsWith('.pdf') ? (
-            <iframe src={certificates[lightbox].file} title={certificates[lightbox].name} className="lightbox-content" style={{ backgroundColor: 'white', width: '80vw', height: '80vh', border: 'none', borderRadius: '4px' }} onClick={e => e.stopPropagation()} />
-          ) : (
-            <img src={certificates[lightbox].file} alt={certificates[lightbox].name} className="lightbox-content" onClick={e => e.stopPropagation()} />
-          )}
+          <iframe src={certificates[lightbox].file} title={certificates[lightbox].name} className="lightbox-content" style={{ backgroundColor: 'white', width: '80vw', height: '80vh', border: 'none', borderRadius: '8px' }} onClick={e => e.stopPropagation()} />
           <button className="lightbox-nav next" onClick={e => { e.stopPropagation(); setLightbox(p => p !== null ? (p + 1) % certificates.length : null); }}><FaChevronRight /></button>
           <div className="lightbox-caption">{certificates[lightbox].name}</div>
         </div>
