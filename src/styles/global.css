@@ -130,11 +130,11 @@ img {
 }
 
 /* ===================================
-   Page Banner
+   Page Banner — Slim & Premium
    =================================== */
 .page-banner {
   position: relative;
-  height: 150px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +147,8 @@ img {
   position: absolute;
   inset: 0;
   background: url('/images/home/hero-banner1.jpg') center/cover;
-  opacity: 0.25;
+  opacity: 0.2;
+  filter: blur(2px);
 }
 
 .page-banner::after {
@@ -162,7 +163,7 @@ img {
   z-index: 2;
   text-align: center;
   color: white;
-  margin-top: 30px; /* Offset to keep text centered nicely */
+  margin-top: 30px;
 }
 
 .page-banner-content h1 {
@@ -170,6 +171,7 @@ img {
   color: white;
   margin-bottom: 0;
   text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  letter-spacing: 1px;
 }
 
 .page-banner-breadcrumb {
@@ -189,7 +191,7 @@ img {
 }
 
 /* ===================================
-   Buttons
+   Buttons — Premium with Shimmer
    =================================== */
 .btn-gold {
   display: inline-flex;
@@ -209,6 +211,23 @@ img {
   letter-spacing: 1px;
   box-shadow: var(--shadow-gold);
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.6s ease;
+}
+
+.btn-gold:hover::before {
+  left: 100%;
 }
 
 .btn-gold:hover {
@@ -266,7 +285,7 @@ img {
 }
 
 /* ===================================
-   Cards
+   Cards — Enhanced with Glassmorphism
    =================================== */
 .card-wood {
   background: white;
@@ -315,7 +334,7 @@ img {
 }
 
 /* ===================================
-   Animations
+   Animations — Rich & Engaging
    =================================== */
 @keyframes fadeInUp {
   from {
@@ -379,6 +398,17 @@ img {
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-100%); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(201, 147, 58, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(201, 147, 58, 0.4); }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .animate-fade-up {
@@ -467,7 +497,7 @@ img {
 }
 
 /* ===================================
-   Lightbox
+   Lightbox — Enhanced
    =================================== */
 .lightbox-overlay {
   position: fixed;
@@ -479,6 +509,7 @@ img {
   justify-content: center;
   animation: fadeIn 0.3s ease;
   cursor: pointer;
+  backdrop-filter: blur(8px);
 }
 
 @keyframes fadeIn {
@@ -492,6 +523,7 @@ img {
   object-fit: contain;
   border-radius: var(--radius-lg);
   box-shadow: 0 0 60px rgba(0,0,0,0.5);
+  animation: scaleIn 0.3s ease;
 }
 
 .lightbox-close {
@@ -501,8 +533,14 @@ img {
   font-size: 36px;
   color: white;
   cursor: pointer;
-  background: none;
-  border: none;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-full);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0.8;
   transition: var(--transition-fast);
 }
@@ -510,6 +548,7 @@ img {
 .lightbox-close:hover {
   opacity: 1;
   transform: scale(1.1);
+  background: rgba(255,255,255,0.2);
 }
 
 .lightbox-nav {
@@ -520,7 +559,7 @@ img {
   color: white;
   cursor: pointer;
   background: rgba(255,255,255,0.1);
-  border: none;
+  border: 1px solid rgba(255,255,255,0.15);
   width: 50px;
   height: 50px;
   border-radius: var(--radius-full);
@@ -532,6 +571,7 @@ img {
 
 .lightbox-nav:hover {
   background: rgba(255,255,255,0.25);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .lightbox-nav.prev { left: 20px; }
@@ -547,8 +587,9 @@ img {
   font-size: var(--fs-body);
   text-align: center;
   background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
   padding: 8px 24px;
   border-radius: var(--radius-md);
   max-width: 80vw;
+  border: 1px solid rgba(255,255,255,0.1);
 }
-

@@ -1,31 +1,73 @@
-/* Manufacturing Page */
+/* Manufacturing Page — Premium Design */
 .mfg-process { padding: var(--space-section) 0; background: white; }
 .process-steps { position: relative; }
-.process-step { display: flex; align-items: flex-start; gap: var(--space-2xl); margin-bottom: var(--space-3xl); }
+
+.process-step {
+  display: flex; align-items: flex-start; gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl); transition: transform 0.3s ease;
+}
 .process-step:nth-child(even) { flex-direction: row-reverse; }
-.process-step-number { min-width: 80px; height: 80px; border-radius: var(--radius-full); background: var(--clr-gold-gradient); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: var(--clr-deep-mahogany); box-shadow: var(--shadow-gold); }
+.process-step:hover { transform: translateY(-4px); }
+
+.process-step-number {
+  min-width: 80px; height: 80px; border-radius: var(--radius-full);
+  background: var(--clr-gold-gradient); display: flex; align-items: center;
+  justify-content: center; font-family: var(--font-display); font-size: 1.8rem;
+  font-weight: 800; color: var(--clr-deep-mahogany); box-shadow: var(--shadow-gold);
+  transition: all 0.4s ease; flex-shrink: 0;
+}
+.process-step:hover .process-step-number { transform: scale(1.1); box-shadow: 0 8px 30px rgba(201, 147, 58, 0.5); }
+
 .process-step-content { flex: 1; }
 .process-step-content h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--clr-deep-mahogany); margin-bottom: var(--space-sm); }
 .process-step-content p { font-size: var(--fs-body); color: #6b5b4b; line-height: 1.8; margin: 0; }
-.process-step-img { flex: 1; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); }
-.process-step-img img { width: 100%; height: 280px; object-fit: cover; }
 
-/* Material Cards */
+.process-step-img {
+  flex: 1; border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-lg); position: relative;
+}
+.process-step-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,147,58,0.1) 0%, transparent 50%);
+  pointer-events: none; transition: opacity 0.3s ease; opacity: 0;
+}
+.process-step:hover .process-step-img::after { opacity: 1; }
+.process-step-img img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.6s ease; }
+.process-step:hover .process-step-img img { transform: scale(1.05); }
+
+/* Material Cards — Enhanced */
 .materials-section { padding: var(--space-section) 0; background: var(--clr-cream-white); }
-.material-card { background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); transition: var(--transition-base); height: 100%; }
-.material-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card-hover); }
-.material-card img { width: 100%; height: 200px; object-fit: cover; }
+.material-card {
+  background: white; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-card); transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 100%; border: 1px solid rgba(212,149,106,0.08);
+}
+.material-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(26, 16, 8, 0.14); }
+.material-card img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.6s ease; }
+.material-card:hover img { transform: scale(1.06); }
 .material-card-body { padding: var(--space-xl); }
 .material-card-body h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--clr-deep-mahogany); margin-bottom: var(--space-sm); }
 .material-card-body p { font-size: var(--fs-small); color: #6b5b4b; margin: 0; line-height: 1.7; }
 
-/* Sustainability */
-.sustainability-section { padding: var(--space-section) 0; background: var(--clr-forest-green); color: white; text-align: center; }
+/* Sustainability — Enhanced */
+.sustainability-section {
+  padding: var(--space-section) 0; background: var(--clr-forest-green);
+  color: white; text-align: center; position: relative; overflow: hidden;
+}
+.sustainability-section::before {
+  content: ''; position: absolute; top: -30%; left: -10%; width: 400px; height: 400px;
+  border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none;
+}
+.sustainability-section::after {
+  content: ''; position: absolute; bottom: -20%; right: -10%; width: 300px; height: 300px;
+  border-radius: 50%; background: rgba(255,255,255,0.03); pointer-events: none;
+}
 .sustainability-section .section-title { color: white; }
 .sustainability-section .section-label { color: rgba(255,255,255,0.7); }
 .eco-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--space-xl); margin-top: var(--space-2xl); }
-.eco-item { text-align: center; padding: var(--space-xl); }
-.eco-icon { font-size: 36px; color: rgba(255,255,255,0.9); margin-bottom: var(--space-md); }
+.eco-item { text-align: center; padding: var(--space-xl); transition: transform 0.3s ease; }
+.eco-item:hover { transform: translateY(-6px); }
+.eco-icon { font-size: 36px; color: rgba(255,255,255,0.9); margin-bottom: var(--space-md); transition: transform 0.3s ease; }
+.eco-item:hover .eco-icon { transform: scale(1.15); }
 .eco-item h4 { color: white; font-family: var(--font-display); margin-bottom: var(--space-sm); }
 .eco-item p { color: rgba(255,255,255,0.6); font-size: var(--fs-small); margin: 0; }
-
