@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaTimes, FaChevronLeft, FaChevronRight, FaShieldAlt, FaGlobeAsia, FaCheckCircle, FaFilePdf } from 'react-icons/fa';
+import { FaTimes, FaChevronLeft, FaChevronRight, FaShieldAlt, FaGlobeAsia, FaCheckCircle } from 'react-icons/fa';
 import { useScrollReveal } from '../hooks/useAnimations';
 import '../styles/pages.css';
 

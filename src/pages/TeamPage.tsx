@@ -35,7 +35,19 @@ const teamMembers = [
   },
 ];
 
-const departments = [
+type Member = {
+  name: string;
+  contact?: string;
+  email?: string;
+  phone?: string;
+};
+
+type Department = {
+  name: string;
+  members: Member[];
+};
+
+const departments: Department[] = [
   {
     name: 'Accounts',
     members: [
